@@ -3,15 +3,24 @@
 }
 
 .card {
-	width: 18rem;
+	border: none;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	height: auto;
 	margin: 0 auto;
 	margin-bottom: 1rem;
 }
 
-.card-img-top {
+.card-img {
 	width: 100%;
-	height: 18rem;
+	height: auto;
 	object-fit: cover;
+	aspect-ratio: 16 / 9;
+	object-position: center;
+}
+
+.card-body {
+	padding: 1.25rem;
 }
 
 .card-title {
