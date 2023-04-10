@@ -1,0 +1,25 @@
+.featured-algorithms {
+	margin-top: 2rem;
+}
+
+.card {
+	width: 18rem;
+	margin: 0 auto;
+	margin-bottom: 1rem;
+}
+
+.card-img-top {
+	width: 100%;
+	height: 18rem;
+	object-fit: cover;
+}
+
+.card-title {
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+.card-text {
+	font-size: 1rem;
+	font-weight: 400;
+}

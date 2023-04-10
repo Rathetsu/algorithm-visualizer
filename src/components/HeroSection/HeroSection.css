@@ -1,0 +1,20 @@
+.hero {
+	/* background: url('../../assets/HomePage/hero-background-image.png') no-repeat center center; */
+	/* make the background darker */
+	background: rgba(0, 0, 0, 0.5) url('../../assets/HomePage/hero-background-image.jpg') no-repeat center center;
+	background-size: cover;
+	padding: 100px 0;
+	color: #fff;
+}
+
+.hero-title {
+	font-size: 3rem;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+.hero-description {
+	font-size: 1.5rem;
+	font-weight: 400;
+	margin-bottom: 20px;
+}
