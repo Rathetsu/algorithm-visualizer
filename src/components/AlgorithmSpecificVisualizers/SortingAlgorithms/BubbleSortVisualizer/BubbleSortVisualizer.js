@@ -1,5 +1,5 @@
 import React from 'react';
-import GeneralAlgorithmVisualizer from '../../../GeneralAlgorithmVisualizer/GeneralAlgorithmVisualizer.js';
+import GeneralAlgorithmVisualizer from '../../../GeneralAlgorithmVisualizer/GeneralAlgorithmVisualizer';
 
 const BubbleSortVisualizer = () => {
 	return (
