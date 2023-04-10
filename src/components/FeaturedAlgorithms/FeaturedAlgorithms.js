@@ -5,15 +5,15 @@ import './FeaturedAlgorithms.css';
 const FeaturedAlgorithms = () => {
 	const algorithms = [
 		{
-			id: 1,
+			id: 'bubble-sort',
 			title: 'Bubble Sort',
 			description: 'A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.',
 			image: require('../../assets/Algorithms/bubble-sort.jpg')
 
 		},
 		{
-			id: 2,
-			title: 'Dijkstra\'s Algorithm',
+			id: 'dijkstras',
+			title: 'Dijkestra\'s Algorithm',
 			description: 'A graph search algorithm that solves the single-source shortest path problem for a graph with non-negative edge weights, producing a shortest-path tree.',
 			image: require('../../assets/Algorithms/dijkstras.jpg')
 		},
