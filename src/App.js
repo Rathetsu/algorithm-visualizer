@@ -13,10 +13,10 @@ function App() {
 			<div className="App d-flex flex-column min-vh-100">
 				<main className="flex-grow-1">
 					<Routes>
-						<Route path='/' element={<NavBar />} >
-							<Route index element={<><HeroSection /><FeaturedAlgorithms /></>} />
-							<Route path="/algorithms/bubble-sort" element={<BubbleSortVisualizer />} />
-							<Route path="/algorithms/dijkstras" element={<DijkestrasVisualizer />} />
+						<Route path='/algorithm-visualizer/' element={<NavBar />} >
+							<Route path='/algorithm-visualizer/' element={<><HeroSection /><FeaturedAlgorithms /></>} />
+							<Route path="/algorithm-visualizer/algorithms/bubble-sort" element={<BubbleSortVisualizer />} />
+							<Route path="/algorithm-visualizer/algorithms/dijkstras" element={<DijkestrasVisualizer />} />
 						</Route>
 					</Routes>
 				</main>
