@@ -2,22 +2,26 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 20px;
 }
 
-.array-container {
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	width: 100%;
-	height: 60%;
+.sorting-visualizer-svg {
 	background-color: #eee;
-	padding: 10px;
-	gap: 2px;
 }
 
 .bar {
-	width: 2px;
-	background-color: turquoise;
+	fill: steelblue;
+}
+
+.axis {
+	font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
 }
 
 .generate-button {
@@ -25,4 +29,14 @@
 	padding: 10px 20px;
 	font-size: 16px;
 	cursor: pointer;
+	background-color: steelblue;
+	border: none;
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.generate-button:hover {
+	background-color: #1a508b;
 }

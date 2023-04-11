@@ -4,7 +4,9 @@ import NavBar from './components/NavBar/NavBar';
 import HeroSection from './components/HeroSection/HeroSection';
 import FeaturedAlgorithms from './components/FeaturedAlgorithms/FeaturedAlgorithms';
 import Footer from './components/Footer/Footer';
-
+import SortingVisualizer from './components/Algorithms/SortingAlgorithms/SortingVisualizer/SortingVisualizer';
+import PathfindingVisualizer from './components/Algorithms/PathfindingAlgorithms/PathfindingVisualizer/PathfindingVisualizer';
+import GraphVisualizer from './components/Algorithms/GraphAlgorithms/GraphVisualizer/GraphVisualizer';
 
 function App() {
 	return (
@@ -14,6 +16,11 @@ function App() {
 					<Routes>
 						<Route path='/algorithm-visualizer/' element={<NavBar />} >
 							<Route path='/algorithm-visualizer/' element={<><HeroSection /><FeaturedAlgorithms /></>} />
+
+							<Route path='/algorithm-visualizer/sorting-algorithms' element={<SortingVisualizer />} />
+							<Route path='/algorithm-visualizer/pathfinding-algorithms' element={<PathfindingVisualizer />} />
+							<Route path='/algorithm-visualizer/graph-algorithms' element={<GraphVisualizer />} />
+
 						</Route>
 					</Routes>
 				</main>

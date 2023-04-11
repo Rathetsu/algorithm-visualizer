@@ -33,7 +33,7 @@ const FeaturedAlgorithms = () => {
 									<div className="card-body">
 										<h3 className="card-title">{algorithm.title}</h3>
 										<p className="card-text">{algorithm.description}</p>
-										<Link className="btn btn-primary" to={`/algorithms/${algorithm.id}`}>Explore Visualizers</Link>
+										<Link className="btn btn-primary" to={`/algorithm-visualizer/${algorithm.id}`}>Explore Visualizers</Link>
 									</div>
 								</div>
 							</div>
