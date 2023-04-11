@@ -4,8 +4,7 @@ import NavBar from './components/NavBar/NavBar';
 import HeroSection from './components/HeroSection/HeroSection';
 import FeaturedAlgorithms from './components/FeaturedAlgorithms/FeaturedAlgorithms';
 import Footer from './components/Footer/Footer';
-import BubbleSortVisualizer from './components/AlgorithmSpecificVisualizers/SortingAlgorithms/BubbleSortVisualizer/BubbleSortVisualizer';
-import DijkestrasVisualizer from './components/AlgorithmSpecificVisualizers/PathfindingAlgorithms/DijkestrasVisualizer/DijkestrasVisualizer';
+
 
 function App() {
 	return (
@@ -15,8 +14,6 @@ function App() {
 					<Routes>
 						<Route path='/algorithm-visualizer/' element={<NavBar />} >
 							<Route path='/algorithm-visualizer/' element={<><HeroSection /><FeaturedAlgorithms /></>} />
-							<Route path="/algorithm-visualizer/algorithms/bubble-sort" element={<BubbleSortVisualizer />} />
-							<Route path="/algorithm-visualizer/algorithms/dijkstras" element={<DijkestrasVisualizer />} />
 						</Route>
 					</Routes>
 				</main>
