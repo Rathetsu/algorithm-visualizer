@@ -7,9 +7,12 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-left: 200px;
+	
 }
 
+.visualizer-container-text {
+	margin-left: 200px;
+}
 .generate-button {
 	margin-top: 10px;
 	background-color: #007bff;
