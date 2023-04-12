@@ -1,20 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './FeaturedAlgorithms.css';
+import * as strings from '../../assets/strings';
 
 const FeaturedAlgorithms = () => {
 	const algorithms = [
 		{
 			id: 'sorting-algorithms',
 			title: 'Sorting Algorithms',
-			description: 'Discover the fascinating realm of sorting algorithms through our engaging visualizers. Experience the magic of popular algorithms like Bubble Sort, Quick Sort, and Merge Sort, as they efficiently organize data in a specific order. Unravel the intricacies of these classic algorithms and enhance your understanding of their underlying principles.',
+			description: strings.SORTING_ALGORITHMS_DESCRIPTION,
 			image: require('../../assets/Algorithms/sorting-algorithms-image.png')
 
 		},
 		{
 			id: 'pathfinding-algorithms',
 			title: 'Path Finding Algorithms',
-			description: 'Explore the world of path finding algorithms with our interactive visualizers. Dive into popular algorithms such as A* and Dijkstra\'s, and learn how they efficiently find the shortest path between two points in a graph. Unlock the secrets of these powerful algorithms and gain a deeper understanding of their inner workings.',
+			description: strings.PATHFINDING_ALGORITHMS_DESCRIPTION,
 			image: require('../../assets/Algorithms/pathfinding-algorithms-image.jpg')
 		},
 	];
