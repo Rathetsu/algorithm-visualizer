@@ -6,13 +6,9 @@
 .visualizer-container {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	
+	margin-left: 300px;
 }
 
-.visualizer-container-text {
-	margin-left: 200px;
-}
 .generate-button {
 	margin-top: 10px;
 	background-color: #007bff;

@@ -81,7 +81,7 @@ const SortingVisualizer = () => {
 					height='500'
 					className='sorting-visualizer-svg'
 				></svg>
-				<div className='visualizer-container-text'>
+				<div className='visualizer-container'>
 					{selectedAlgorithm && (
 						<AlgoCompass algorithm={selectedAlgorithm} />
 					)}
