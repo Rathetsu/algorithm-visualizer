@@ -5,7 +5,7 @@ import './SortingVisualizer.css';
 import SideBar from '../../../SideBar/SideBar';
 import AlgoCompass from '../../../AlgoCompass/AlgoCompass';
 import * as strings from '../../../../assets/strings';
-
+import { mergeSort, quickSort, heapSort, bubbleSort } from '../SortingAlgorithms';
 
 const SortingVisualizer = () => {
 	const [array, setArray] = useState([]);
@@ -73,20 +73,23 @@ const SortingVisualizer = () => {
 				onSelectAlgorithm={handleSelectAlgorithm}
 				onGenerateNewArray={generateRandomArray}
 			/>
-
-			<div className='visualizer-container'>
-				<svg
-					ref={ref}
-					width='960'
-					height='500'
-					className='sorting-visualizer-svg'
-				></svg>
+			<div className='visualizer-and-compass-container'>
 				<div className='visualizer-container'>
+					<svg
+						ref={ref}
+						width='960'
+						height='500'
+						className='sorting-visualizer-svg'
+					></svg>
+
 					{selectedAlgorithm && (
-						<AlgoCompass algorithm={selectedAlgorithm} />
+						<div className="algo-compass-container">
+							<AlgoCompass algorithm={selectedAlgorithm} />
+						</div>
 					)}
 				</div>
 			</div>
+
 		</div>
 	);
 };

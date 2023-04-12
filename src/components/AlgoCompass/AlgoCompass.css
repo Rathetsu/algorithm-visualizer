@@ -1,4 +1,10 @@
 .algo-compass {
 	padding: 20px;
-	margin-left: -300px;
+	margin-left: 100px;
+	margin-top: 20px;
+	box-sizing: border-box;
+	height: auto;
+	width: 300px;
+	/* overflow-y: scroll; */
+	background-color: #f8f9fa;
 }
