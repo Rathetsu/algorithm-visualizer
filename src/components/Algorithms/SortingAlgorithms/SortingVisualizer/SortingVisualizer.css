@@ -1,42 +1,29 @@
 .sorting-visualizer {
 	display: flex;
+	position: relative;
+}
+
+.visualizer-container {
+	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 20px;
-}
-
-.sorting-visualizer-svg {
-	background-color: #eee;
-}
-
-.bar {
-	fill: steelblue;
-}
-
-.axis {
-	font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+	margin-left: 200px;
 }
 
 .generate-button {
-	margin-top: 20px;
-	padding: 10px 20px;
-	font-size: 16px;
-	cursor: pointer;
-	background-color: steelblue;
+	margin-top: 10px;
+	background-color: #007bff;
 	border: none;
 	color: white;
-	text-transform: uppercase;
-	font-weight: bold;
-	border-radius: 5px;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 4px;
 }
 
 .generate-button:hover {
-	background-color: #1a508b;
+	background-color: #0056b3;
 }

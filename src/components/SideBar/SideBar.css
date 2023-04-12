@@ -1,0 +1,46 @@
+.sidebar {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 200px;
+	background-color: #f8f9fa;
+	overflow-y: auto;
+	transition: all 0.3s;
+	padding-top: 20px;
+}
+
+.sidebar.collapsed {
+	width: 50px;
+}
+
+.sidebar .toggle-btn {
+	position: absolute;
+	right: -50px;
+	top: 20px;
+	width: 50px;
+	height: 50px;
+	background-color: #f8f9fa;
+	border: none;
+	font-size: 24px;
+}
+
+.sidebar .algorithms {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 20px;
+}
+
+.sidebar .algorithms button {
+	width: 100%;
+	padding: 5px 10px;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	text-align: left;
+}
+
+.sidebar .algorithms button:hover {
+	background-color: #e9ecef;
+}
