@@ -4,6 +4,8 @@ import useD3 from '../../../../hooks/useD3';
 import './SortingVisualizer.css';
 import SideBar from '../../../SideBar/SideBar';
 import AlgoCompass from '../../../AlgoCompass/AlgoCompass';
+import { BUBBLE_SORT_DESCRIPTION, MERGE_SORT_DESCRIPTION, HEAP_SORT_DESCRIPTION, QUICK_SORT_DESCRIPTION } from '../../../../assets/Algorithms/strings';
+
 
 const SortingVisualizer = () => {
 	const [array, setArray] = useState([]);
@@ -44,10 +46,12 @@ const SortingVisualizer = () => {
 			.attr('height', (d) => height - y(d));
 	}, [array]);
 
-	// Dummy algorithms data
+	// Algorithms data
 	const algorithms = [
-		{ id: 1, name: 'Bubble Sort', description: 'Bubble Sort is a simple sorting algorithm...' },
-		{ id: 2, name: 'Merge Sort', description: 'Merge Sort is an efficient, stable sorting algorithm...' },
+		{ id: 1, name: 'Bubble Sort', description: BUBBLE_SORT_DESCRIPTION },
+		{ id: 2, name: 'Merge Sort', description: MERGE_SORT_DESCRIPTION },
+		{ id: 3, name: 'Quick Sort', description: QUICK_SORT_DESCRIPTION },
+		{ id: 4, name: 'Heap Sort', description: HEAP_SORT_DESCRIPTION },
 	];
 
 	const handleSelectAlgorithm = (algorithmId) => {
@@ -57,12 +61,9 @@ const SortingVisualizer = () => {
 
 	return (
 		<div className="sorting-visualizer">
-			<SideBar algorithms={algorithms} onSelectAlgorithm={handleSelectAlgorithm} />
+			<SideBar algorithms={algorithms} onSelectAlgorithm={handleSelectAlgorithm} onGenerateNewArray={generateRandomArray} />
 			<div className="visualizer-container">
 				<svg ref={ref} width="960" height="500" className="sorting-visualizer-svg"></svg>
-				<button className="generate-button" onClick={generateRandomArray}>
-					Generate New Array
-				</button>
 				{selectedAlgorithm && <AlgoCompass algorithm={selectedAlgorithm} />}
 			</div>
 		</div>
