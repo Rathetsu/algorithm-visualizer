@@ -115,20 +115,21 @@ function siftDown(arr, start, end) {
 // 4. Bubble Sort
 
 export function bubbleSort(arr) {
-	let swapped;
+	const array = [...arr];
+	const steps = [];
 
-	do {
-		swapped = false;
-		for (let i = 0; i < arr.length - 1; i++) {
-			if (arr[i] > arr[i + 1]) {
-				[arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
-				swapped = true;
+	for (let i = 0; i < array.length - 1; i++) {
+		for (let j = 0; j < array.length - i - 1; j++) {
+			steps.push({ type: 'compare', first: j, second: j + 1 });
+			if (array[j] > array[j + 1]) {
+				steps.push({ type: 'swap', first: j, second: j + 1 });
+				[array[j], array[j + 1]] = [array[j + 1], array[j]];
 			}
 		}
-	} while (swapped);
-
-	return arr;
+	}
+	return steps;
 }
+
 
 
 // ================================================================================================================================== //

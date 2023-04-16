@@ -18,6 +18,20 @@ const SortingVisualizer = () => {
 		setArray(newArray);
 	};
 
+	const animateSorting = (steps, animationSpeed = 50) => {
+		steps.forEach((step, index) => {
+			setTimeout(() => {
+				if (step.type === 'compare') {
+					// Animate the comparison
+					// Change the color of the two bars being compared
+				} else if (step.type === 'swap') {
+					// Animate the swap
+					// Swap the two bars and reset their colors
+				}
+			}, index * animationSpeed);
+		});
+	};
+
 	useEffect(() => {
 		generateRandomArray();
 	}, []);
@@ -61,10 +75,12 @@ const SortingVisualizer = () => {
 		{ id: 4, name: 'Heap Sort', description: strings.HEAP_SORT_DESCRIPTION },
 	];
 
-	const handleSelectAlgorithm = (algorithmId) => {
-		const algorithm = algorithms.find((algo) => algo.id === algorithmId);
+	const handleSelectAlgorithm = (algorithm) => {
 		setSelectedAlgorithm(algorithm);
+		const steps = algorithm.function(array);
+		animateSorting(steps);
 	};
+
 
 	return (
 		<div className='sorting-visualizer'>
