@@ -20,27 +20,17 @@ const SortingVisualizer = () => {
 	};
 
 	const startSorting = () => {
-		// setSorting(true);
-		animateSorting(selectedAlgorithm.function, array, 50)
-			.then((sortedArray) => {
-				setArray(sortedArray);
-				// setSorting(false);
-			})
-			.catch((error) => {
-				console.error('Error during sorting:', error);
-				// setSorting(false);
-			});
-	};
+		animateSorting(selectedAlgorithm.function(array), ref, 1);
+	  };	  
 
-	const animateSorting = (steps, animationSpeed = 50) => {
-		console.log(steps)
+	const animateSorting = (steps, ref, animationSpeed = 50) => {
+		console.log('steps: ', steps);
 		if (steps.length === 0) return;
 
 		const svg = d3.select(ref.current);
 		const bars = svg.selectAll('.bar');
 
 		const margin = { top: 20, right: 20, bottom: 30, left: 40 };
-		// const width = 960 - margin.left - margin.right;
 		const height = 500 - margin.top - margin.bottom;
 
 		const y = d3.scaleLinear().range([height, 0]);
@@ -67,7 +57,12 @@ const SortingVisualizer = () => {
 					.duration(animationSpeed / 2)
 					.attr('y', (d) => y(d))
 					.attr('height', (d) => height - y(d))
-					.style('fill', 'steelblue');
+					.style('fill', 'steelblue')
+					.on('end', (_, idx) => {
+						if (idx === step.first || idx === step.second) {
+							d3.select(bars.nodes()[idx]).style('fill', 'steelblue');
+						}
+					});
 			}
 
 			i++;
@@ -84,6 +79,7 @@ const SortingVisualizer = () => {
 			}
 		}, animationSpeed);
 	};
+
 
 	useEffect(() => {
 		generateRandomArray();
@@ -161,6 +157,7 @@ const SortingVisualizer = () => {
 				</div>
 				<div className="sorting-button-container">
 					<button
+						// eslint-disable-next-line
 						className='`btn sorting-button ${!selectedAlgorithm ? "disabled" : ""}`'
 						onClick={startSorting}
 						disabled={!selectedAlgorithm}
