@@ -1,35 +1,47 @@
 
 // 1. Merge Sort
 
-export function mergeSort(arr) {
-	if (arr.length <= 1) {
-		return arr;
+export function mergeSort(arr, start = 0, end = arr.length - 1, steps = []) {
+	if (start < end) {
+		const middle = Math.floor((start + end) / 2);
+		mergeSort(arr, start, middle, steps);
+		mergeSort(arr, middle + 1, end, steps);
+		merge(arr, start, middle, end, steps);
 	}
-
-	const middle = Math.floor(arr.length / 2);
-	const left = arr.slice(0, middle);
-	const right = arr.slice(middle);
-
-	return merge(mergeSort(left), mergeSort(right));
+	return steps;
 }
 
-function merge(left, right) {
-	let result = [];
+function merge(arr, start, middle, end, steps) {
+	const left = arr.slice(start, middle + 1);
+	const right = arr.slice(middle + 1, end + 1);
 	let i = 0;
 	let j = 0;
+	let k = start;
 
 	while (i < left.length && j < right.length) {
-		if (left[i] < right[j]) {
-			result.push(left[i]);
-			i++;
+		steps.push({ type: 'compare', first: start + i, second: middle + 1 + j });
+		if (left[i] <= right[j]) {
+			steps.push({ type: 'swap', first: k, second: start + i });
+			arr[k++] = left[i++];
 		} else {
-			result.push(right[j]);
-			j++;
+			steps.push({ type: 'swap', first: k, second: middle + 1 + j });
+			arr[k++] = right[j++];
 		}
 	}
 
-	return result.concat(left.slice(i)).concat(right.slice(j));
+	while (i < left.length) {
+		steps.push({ type: 'compare', first: start + i, second: middle + 1 + j });
+		steps.push({ type: 'swap', first: k, second: start + i });
+		arr[k++] = left[i++];
+	}
+
+	while (j < right.length) {
+		steps.push({ type: 'compare', first: start + i, second: middle + 1 + j });
+		steps.push({ type: 'swap', first: k, second: middle + 1 + j });
+		arr[k++] = right[j++];
+	}
 }
+
 
 
 // ================================================================================================================================== //
@@ -37,77 +49,82 @@ function merge(left, right) {
 
 // 2. Quick Sort
 
-export function quickSort(arr, left = 0, right = arr.length - 1) {
-	if (left < right) {
-		const pivotIndex = partition(arr, left, right);
-		quickSort(arr, left, pivotIndex - 1);
-		quickSort(arr, pivotIndex + 1, right);
+export function quickSort(arr, start = 0, end = arr.length - 1, steps = []) {
+	if (start < end) {
+		const pivotIndex = partition(arr, start, end, steps);
+		quickSort(arr, start, pivotIndex - 1, steps);
+		quickSort(arr, pivotIndex + 1, end, steps);
 	}
-	return arr;
+	return steps;
 }
 
-function partition(arr, left, right) {
-	const pivot = arr[right];
-	let i = left;
+function partition(arr, start, end, steps) {
+	const pivot = arr[end];
+	let pivotIndex = start;
 
-	for (let j = left; j < right; j++) {
-		if (arr[j] < pivot) {
-			[arr[i], arr[j]] = [arr[j], arr[i]];
-			i++;
+	for (let i = start; i < end; i++) {
+		steps.push({ type: 'compare', first: i, second: end });
+		if (arr[i] < pivot) {
+			steps.push({ type: 'swap', first: i, second: pivotIndex });
+			[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
+			pivotIndex++;
 		}
 	}
 
-	[arr[i], arr[right]] = [arr[right], arr[i]];
-	return i;
+	steps.push({ type: 'swap', first: pivotIndex, second: end });
+	[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
+	return pivotIndex;
 }
+
 
 // ================================================================================================================================== //
 
 
 // 3. Heap Sort
 
-export function heapSort(arr) {
-	buildMaxHeap(arr);
+export function heapSort(arr, steps = []) {
+	let n = arr.length;
 
-	for (let i = arr.length - 1; i > 0; i--) {
+	for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+		heapify(arr, n, i, steps);
+	}
+
+	for (let i = n - 1; i > 0; i--) {
+		steps.push({ type: 'compare', first: 0, second: i });
+		steps.push({ type: 'swap', first: 0, second: i });
 		[arr[0], arr[i]] = [arr[i], arr[0]];
-		siftDown(arr, 0, i);
+		heapify(arr, i, 0, steps);
 	}
 
-	return arr;
+	return steps;
 }
 
-function buildMaxHeap(arr) {
-	const firstNonLeafIndex = Math.floor(arr.length / 2) - 1;
+function heapify(arr, n, i, steps) {
+	let largest = i;
+	let left = 2 * i + 1;
+	let right = 2 * i + 2;
 
-	for (let i = firstNonLeafIndex; i >= 0; i--) {
-		siftDown(arr, i, arr.length);
+	if (left < n) {
+		steps.push({ type: 'compare', first: left, second: largest });
+		if (arr[left] > arr[largest]) {
+			largest = left;
+		}
+	}
+
+	if (right < n) {
+		steps.push({ type: 'compare', first: right, second: largest });
+		if (arr[right] > arr[largest]) {
+			largest = right;
+		}
+	}
+
+	if (largest !== i) {
+		steps.push({ type: 'swap', first: i, second: largest });
+		[arr[i], arr[largest]] = [arr[largest], arr[i]];
+		heapify(arr, n, largest, steps);
 	}
 }
 
-function siftDown(arr, start, end) {
-	let root = start;
-
-	while (root * 2 + 1 < end) {
-		let child = root * 2 + 1;
-		let swap = root;
-
-		if (arr[swap] < arr[child]) {
-			swap = child;
-		}
-
-		if (child + 1 < end && arr[swap] < arr[child + 1]) {
-			swap = child + 1;
-		}
-
-		if (swap !== root) {
-			[arr[root], arr[swap]] = [arr[swap], arr[root]];
-			root = swap;
-		} else {
-			return;
-		}
-	}
-}
 
 // ================================================================================================================================== //
 
@@ -129,7 +146,6 @@ export function bubbleSort(arr) {
 	}
 	return steps;
 }
-
 
 
 // ================================================================================================================================== //
