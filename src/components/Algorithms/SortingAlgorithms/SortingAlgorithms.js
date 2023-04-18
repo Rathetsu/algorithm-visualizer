@@ -50,32 +50,54 @@ function merge(arr, start, middle, end, steps) {
 // 2. Quick Sort
 
 export function quickSort(arr, start = 0, end = arr.length - 1, steps = []) {
+	const arrayCopy = [...arr];
+	quickSortHelper(arrayCopy, start, end, steps);
+	return steps;
+}
+
+function quickSortHelper(arr, start, end, steps) {
 	if (start < end) {
 		const pivotIndex = partition(arr, start, end, steps);
-		quickSort(arr, start, pivotIndex - 1, steps);
-		quickSort(arr, pivotIndex + 1, end, steps);
+		quickSortHelper(arr, start, pivotIndex - 1, steps);
+		quickSortHelper(arr, pivotIndex + 1, end, steps);
 	}
-	return steps;
 }
 
 function partition(arr, start, end, steps) {
 	const pivot = arr[end];
-	let pivotIndex = start;
+	let i = start;
+	let j = end - 1;
 
-	for (let i = start; i < end; i++) {
-		steps.push({ type: 'compare', first: i, second: end });
-		if (arr[i] < pivot) {
-			steps.push({ type: 'swap', first: i, second: pivotIndex });
-			[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
-			pivotIndex++;
+	while (i <= j) {
+		while (i <= j) {
+			steps.push({ type: 'compare', first: i, second: end });
+			if (arr[i] > pivot) {
+				break;
+			}
+			i++;
+		}
+
+		while (i <= j) {
+			steps.push({ type: 'compare', first: j, second: end });
+			if (arr[j] <= pivot) {
+				break;
+			}
+			j--;
+		}
+
+		if (i <= j) {
+			steps.push({ type: 'swap', first: i, second: j });
+			[arr[i], arr[j]] = [arr[j], arr[i]];
+			i++;
+			j--;
 		}
 	}
 
-	steps.push({ type: 'swap', first: pivotIndex, second: end });
-	[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
-	return pivotIndex;
-}
+	steps.push({ type: 'swap', first: i, second: end });
+	[arr[i], arr[end]] = [arr[end], arr[i]];
 
+	return i;
+}
 
 // ================================================================================================================================== //
 
