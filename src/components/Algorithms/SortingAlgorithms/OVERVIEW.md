@@ -84,12 +84,6 @@ function heapify(arr, n, i, steps) {
   }
 }
 
-function quickSort(arr, low = 0, high = arr.length - 1, steps = []) {
-  // ... other code
-
-  return steps; // Return steps array instead of the sorted array
-}
-
 ```
 
 
