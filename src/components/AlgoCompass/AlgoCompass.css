@@ -1,10 +1,25 @@
-.algo-compass {
-	padding: 20px;
-	margin-left: 100px;
-	margin-top: 20px;
-	box-sizing: border-box;
-	height: auto;
-	width: 300px;
-	/* overflow-y: scroll; */
-	background-color: #f8f9fa;
+.code-tabs {
+	display: flex;
+	margin-bottom: 1rem;
+}
+
+.code-tab {
+	background-color: #f1f1f1;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+	margin-right: 0.5rem;
+}
+
+.code-tab.active {
+	background-color: #ccc;
+}
+
+.code-content pre {
+	background-color: #f6f8fa;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 1rem;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }

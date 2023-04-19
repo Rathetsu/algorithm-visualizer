@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './FeaturedAlgorithms.css';
-import * as strings from '../../assets/strings';
+import * as strings from '../../utils/strings';
 
 const FeaturedAlgorithms = () => {
 	const algorithms = [

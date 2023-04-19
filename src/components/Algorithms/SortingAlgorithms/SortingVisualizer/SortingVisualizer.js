@@ -4,12 +4,11 @@ import useD3 from '../../../../hooks/useD3';
 import './SortingVisualizer.css';
 import SideBar from '../../../SideBar/SideBar';
 import AlgoCompass from '../../../AlgoCompass/AlgoCompass';
-import * as strings from '../../../../assets/strings';
-import { mergeSort, quickSort, heapSort, bubbleSort } from '../SortingAlgorithms';
+import { sortingAlgorithms } from '../../../../utils/AlgorithmsData';
 
 const SortingVisualizer = () => {
 	const [array, setArray] = useState([]);
-	const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
+	const [selectedAlgorithm, setSelectedAlgorithm] = useState(sortingAlgorithms[0]);
 	const [animationSpeed, setAnimationSpeed] = useState(50);
 
 	const generateRandomArray = () => {
@@ -100,7 +99,6 @@ const SortingVisualizer = () => {
 		setAnimationSpeed(speed);
 	}
 
-
 	useEffect(() => {
 		generateRandomArray();
 	}, []);
@@ -136,25 +134,16 @@ const SortingVisualizer = () => {
 		[array]
 	);
 
-	// Algorithms data
-	const algorithms = [
-		{ id: 1, name: 'Bubble Sort', description: strings.BUBBLE_SORT_DESCRIPTION, function: bubbleSort },
-		{ id: 2, name: 'Merge Sort', description: strings.MERGE_SORT_DESCRIPTION, function: mergeSort },
-		{ id: 3, name: 'Quick Sort', description: strings.QUICK_SORT_DESCRIPTION, function: quickSort },
-		{ id: 4, name: 'Heap Sort', description: strings.HEAP_SORT_DESCRIPTION, function: heapSort },
-	];
-
 	const handleSelectAlgorithm = (algorithmId) => {
-		const selectedAlgo = algorithms.find((algo) => algo.id === algorithmId);
+		const selectedAlgo = sortingAlgorithms.find((algo) => algo.id === algorithmId);
 		setSelectedAlgorithm(selectedAlgo);
-		// const sortingSteps = selectedAlgo.function(array.slice());
-		// animateSorting(sortingSteps, 5);
+		generateRandomArray();
 	};
 
 	return (
 		<div className='sorting-visualizer'>
 			<SideBar
-				algorithms={algorithms}
+				algorithms={sortingAlgorithms}
 				onSelectAlgorithm={handleSelectAlgorithm}
 				onGenerateNewArray={generateRandomArray}
 			/>
