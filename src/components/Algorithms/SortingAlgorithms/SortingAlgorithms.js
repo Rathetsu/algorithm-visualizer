@@ -104,48 +104,58 @@ function partition(arr, start, end, steps) {
 
 // 3. Heap Sort
 
-export function heapSort(arr, steps = []) {
-	let n = arr.length;
+export function heapSort(arr) {
+	const array = [...arr];
+	const steps = [];
 
-	for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
-		heapify(arr, n, i, steps);
-	}
+	const heapify = (arr, n, i) => {
+		let largest = i;
+		let left = 2 * i + 1;
+		let right = 2 * i + 2;
 
-	for (let i = n - 1; i > 0; i--) {
-		steps.push({ type: 'compare', first: 0, second: i });
-		steps.push({ type: 'swap', first: 0, second: i });
-		[arr[0], arr[i]] = [arr[i], arr[0]];
-		heapify(arr, i, 0, steps);
-	}
+		if (left < n) {
+			steps.push({ type: 'compare', first: left, second: largest });
+			if (arr[left] > arr[largest]) {
+				largest = left;
+			}
+		}
+
+		if (right < n) {
+			steps.push({ type: 'compare', first: right, second: largest });
+			if (arr[right] > arr[largest]) {
+				largest = right;
+			}
+		}
+
+		if (largest !== i) {
+			steps.push({ type: 'swap', first: i, second: largest });
+			[arr[i], arr[largest]] = [arr[largest], arr[i]];
+			heapify(arr, n, largest);
+		}
+	};
+
+	const buildHeap = (arr) => {
+		let n = arr.length;
+		for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+			heapify(arr, n, i);
+		}
+	};
+
+	const sortHeap = (arr) => {
+		let n = arr.length;
+		for (let i = n - 1; i > 0; i--) {
+			steps.push({ type: 'swap', first: 0, second: i });
+			[arr[0], arr[i]] = [arr[i], arr[0]];
+			heapify(arr, i, 0);
+		}
+	};
+
+	buildHeap(array);
+	sortHeap(array);
 
 	return steps;
 }
 
-function heapify(arr, n, i, steps) {
-	let largest = i;
-	let left = 2 * i + 1;
-	let right = 2 * i + 2;
-
-	if (left < n) {
-		steps.push({ type: 'compare', first: left, second: largest });
-		if (arr[left] > arr[largest]) {
-			largest = left;
-		}
-	}
-
-	if (right < n) {
-		steps.push({ type: 'compare', first: right, second: largest });
-		if (arr[right] > arr[largest]) {
-			largest = right;
-		}
-	}
-
-	if (largest !== i) {
-		steps.push({ type: 'swap', first: i, second: largest });
-		[arr[i], arr[largest]] = [arr[largest], arr[i]];
-		heapify(arr, n, largest, steps);
-	}
-}
 
 
 // ================================================================================================================================== //
