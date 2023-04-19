@@ -21,7 +21,7 @@ const SortingVisualizer = () => {
 
 	const startSorting = () => {
 		animateSorting(selectedAlgorithm.function(array), ref, 1);
-	  };	  
+	};
 
 	const animateSorting = (steps, ref, animationSpeed = 50) => {
 		console.log('steps: ', steps);
@@ -63,6 +63,18 @@ const SortingVisualizer = () => {
 							d3.select(bars.nodes()[idx]).style('fill', 'steelblue');
 						}
 					});
+			} else if (step.type === 'overwrite') {
+				// Update the value in the array
+				array[step.index] = step.value;
+
+				// Update the bar height and reset the color
+				bars
+					.data(array)
+					.transition()
+					.duration(animationSpeed / 2)
+					.attr('y', (d) => y(d))
+					.attr('height', (d) => height - y(d))
+					.style('fill', (_, idx) => (idx === step.index ? 'green' : 'steelblue'));
 			}
 
 			i++;

@@ -1,46 +1,60 @@
 
 // 1. Merge Sort
 
-export function mergeSort(arr, start = 0, end = arr.length - 1, steps = []) {
-	if (start < end) {
-		const middle = Math.floor((start + end) / 2);
-		mergeSort(arr, start, middle, steps);
-		mergeSort(arr, middle + 1, end, steps);
-		merge(arr, start, middle, end, steps);
-	}
+export function mergeSort(arr) {
+	const array = [...arr];
+	const steps = [];
+	mergeSortHelper(array, 0, array.length - 1, steps);
 	return steps;
 }
 
-function merge(arr, start, middle, end, steps) {
-	const left = arr.slice(start, middle + 1);
-	const right = arr.slice(middle + 1, end + 1);
+function mergeSortHelper(arr, start, end, steps) {
+	if (start < end) {
+		const mid = Math.floor((start + end) / 2);
+		mergeSortHelper(arr, start, mid, steps);
+		mergeSortHelper(arr, mid + 1, end, steps);
+		merge(arr, start, mid, end, steps);
+	}
+}
+
+function merge(arr, start, mid, end, steps) {
+	const left = arr.slice(start, mid + 1);
+	const right = arr.slice(mid + 1, end + 1);
+
 	let i = 0;
 	let j = 0;
 	let k = start;
 
 	while (i < left.length && j < right.length) {
-		steps.push({ type: 'compare', first: start + i, second: middle + 1 + j });
+		steps.push({ type: 'compare', first: start + i, second: mid + 1 + j });
+
 		if (left[i] <= right[j]) {
-			steps.push({ type: 'swap', first: k, second: start + i });
-			arr[k++] = left[i++];
+			steps.push({ type: 'overwrite', index: k, value: left[i] });
+			arr[k] = left[i];
+			i++;
 		} else {
-			steps.push({ type: 'swap', first: k, second: middle + 1 + j });
-			arr[k++] = right[j++];
+			steps.push({ type: 'overwrite', index: k, value: right[j] });
+			arr[k] = right[j];
+			j++;
 		}
+		k++;
 	}
 
 	while (i < left.length) {
-		steps.push({ type: 'compare', first: start + i, second: middle + 1 + j });
-		steps.push({ type: 'swap', first: k, second: start + i });
-		arr[k++] = left[i++];
+		steps.push({ type: 'overwrite', index: k, value: left[i] });
+		arr[k] = left[i];
+		i++;
+		k++;
 	}
 
 	while (j < right.length) {
-		steps.push({ type: 'compare', first: start + i, second: middle + 1 + j });
-		steps.push({ type: 'swap', first: k, second: middle + 1 + j });
-		arr[k++] = right[j++];
+		steps.push({ type: 'overwrite', index: k, value: right[j] });
+		arr[k] = right[j];
+		j++;
+		k++;
 	}
 }
+
 
 
 
