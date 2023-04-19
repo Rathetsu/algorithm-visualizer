@@ -10,7 +10,7 @@ import { mergeSort, quickSort, heapSort, bubbleSort } from '../SortingAlgorithms
 const SortingVisualizer = () => {
 	const [array, setArray] = useState([]);
 	const [selectedAlgorithm, setSelectedAlgorithm] = useState(null);
-	// const [sorting, setSorting] = useState(false);
+	const [animationSpeed, setAnimationSpeed] = useState(50);
 
 	const generateRandomArray = () => {
 		let max = 1000
@@ -19,11 +19,12 @@ const SortingVisualizer = () => {
 		setArray(newArray);
 	};
 
+
 	const startSorting = () => {
-		animateSorting(selectedAlgorithm.function(array), ref, 1);
+		animateSorting(selectedAlgorithm.function(array), ref, animationSpeed);
 	};
 
-	const animateSorting = (steps, ref, animationSpeed = 50) => {
+	const animateSorting = (steps, ref, animationSpeed = 5) => {
 		console.log('steps: ', steps);
 		if (steps.length === 0) return;
 
@@ -44,7 +45,7 @@ const SortingVisualizer = () => {
 				bars
 					.filter((_, idx) => idx === step.first || idx === step.second)
 					.transition()
-					.duration(animationSpeed / 2)
+					.duration(animationSpeed)
 					.style('fill', 'red');
 			} else if (step.type === 'swap') {
 				// Swap the array values
@@ -54,7 +55,7 @@ const SortingVisualizer = () => {
 				bars
 					.data(array)
 					.transition()
-					.duration(animationSpeed / 2)
+					.duration(animationSpeed)
 					.attr('y', (d) => y(d))
 					.attr('height', (d) => height - y(d))
 					.style('fill', 'steelblue')
@@ -71,7 +72,7 @@ const SortingVisualizer = () => {
 				bars
 					.data(array)
 					.transition()
-					.duration(animationSpeed / 2)
+					.duration(animationSpeed)
 					.attr('y', (d) => y(d))
 					.attr('height', (d) => height - y(d))
 					.style('fill', (_, idx) => (idx === step.index ? 'green' : 'steelblue'));
@@ -85,12 +86,19 @@ const SortingVisualizer = () => {
 				// Reset bar colors after sorting is finished
 				bars
 					.transition()
-					.duration(animationSpeed / 2)
+					.duration(animationSpeed)
 					.delay((_, idx) => idx * 10)
 					.style('fill', 'steelblue');
 			}
-		}, animationSpeed);
+		}, animationSpeed * 2);
 	};
+
+	const onChangeSlider = (event) => {
+		const max = 150;
+		let speed = max - event.target.value + 1;
+		console.log('speed: ', speed);
+		setAnimationSpeed(speed);
+	}
 
 
 	useEffect(() => {
@@ -143,8 +151,6 @@ const SortingVisualizer = () => {
 		// animateSorting(sortingSteps, 5);
 	};
 
-
-
 	return (
 		<div className='sorting-visualizer'>
 			<SideBar
@@ -177,6 +183,18 @@ const SortingVisualizer = () => {
 					>
 						Start Sorting
 					</button>
+					<div className="animation-speed-slider-container d-flex align-items-center my-3">
+						<span className="slider-label">Animation Speed</span>
+						<input
+							type="range"
+							className="form-range"
+							min="1"
+							max="150"
+							value={150 + 1 - animationSpeed}
+							id="animation-speed-slider"
+							onChange={onChangeSlider}
+						/>
+					</div>
 				</div>
 
 			</div>

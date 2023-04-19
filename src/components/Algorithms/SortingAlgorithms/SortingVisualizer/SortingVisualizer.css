@@ -82,3 +82,19 @@
 	background-color: #646464;
 	cursor: not-allowed;
 }
+
+.slider-label {
+	font-weight: bold;
+	margin-right: 10px;
+	min-width: 130px;
+}
+
+.sorting-button-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.animation-speed-slider-container span {
+	margin-left: 10px;
+}
