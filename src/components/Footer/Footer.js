@@ -10,7 +10,14 @@ const Footer = () => {
 						{/* <h4>Algorithm Visualizer</h4> */}
 						<ul className="list-unstyled">
 							<li>
-								<a href="https://github.com/Rathetsu/algorithm-visualizer" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+								<a
+									href="https://github.com/Rathetsu/algorithm-visualizer"
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{ color: '#fff' }}
+								>
+									GitHub Repository
+								</a>
 							</li>
 							{/* Add other relevant resources later */}
 						</ul>
@@ -19,10 +26,18 @@ const Footer = () => {
 						{/* <a href="https://twitter.com/AhmedEzzatMuh" target="_blank" rel="noopener noreferrer">
 							<i className="fab fa-twitter"></i>
 						</a> */}
-						<a href="https://linkedin.com/in/AhmedEzzatMuh" target="_blank" rel="noopener noreferrer">
+						<a
+							href="https://linkedin.com/in/AhmedEzzatMuh"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<i className="fab fa-linkedin"></i>
 						</a>
-						<a href="https://github.com/Rathetsu" target="_blank" rel="noopener noreferrer">
+						<a
+							href="https://github.com/Rathetsu"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<i className="fab fa-github"></i>
 						</a>
 					</div>

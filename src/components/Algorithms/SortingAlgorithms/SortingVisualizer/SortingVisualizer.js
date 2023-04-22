@@ -126,6 +126,7 @@ const SortingVisualizer = () => {
 				.enter()
 				.append('rect')
 				.attr('class', 'bar')
+				.attr('fill', '#7aa0c4')
 				.attr('x', (_, i) => x(i))
 				.attr('y', (d) => y(d))
 				.attr('width', x.bandwidth())
@@ -142,50 +143,55 @@ const SortingVisualizer = () => {
 
 	return (
 		<div className='sorting-visualizer'>
-			<SideBar
-				algorithms={sortingAlgorithms}
-				onSelectAlgorithm={handleSelectAlgorithm}
-				onGenerateNewArray={generateRandomArray}
-			/>
-			<div className='visualizer-and-compass-container'>
-				<div className='visualizer-container'>
-					<svg
-						ref={ref}
-						width='960'
-						height='500'
-						className='sorting-visualizer-svg'
-					></svg>
-
-					{selectedAlgorithm && (
-						<div className="algo-compass-container">
-							<AlgoCompass algorithm={selectedAlgorithm} />
+			<div className='d-flex'>
+				<SideBar
+					algorithms={sortingAlgorithms}
+					onSelectAlgorithm={handleSelectAlgorithm}
+					onGenerateNewArray={generateRandomArray}
+				/>
+				<div className='d-flex flex-column'>
+					<div className='top-container'>
+						<div className='visualizer-container'>
+							<svg
+								ref={ref}
+								width='960'
+								height='500'
+								className='sorting-visualizer-svg'
+							></svg>
 						</div>
-					)}
-				</div>
-				<div className="sorting-button-container">
-					<button
-						// eslint-disable-next-line
-						className='`btn sorting-button ${!selectedAlgorithm ? "disabled" : ""}`'
-						onClick={startSorting}
-						disabled={!selectedAlgorithm}
-						style={{ alignSelf: "center" }}
-					>
-						Start Sorting
-					</button>
-					<div className="animation-speed-slider-container d-flex align-items-center my-3">
-						<span className="slider-label">Animation Speed</span>
-						<input
-							type="range"
-							className="form-range"
-							min="1"
-							max="150"
-							value={150 + 1 - animationSpeed}
-							id="animation-speed-slider"
-							onChange={onChangeSlider}
-						/>
+						<div className="sorting-button-container">
+							<button
+								// eslint-disable-next-line
+								className='`btn sorting-button large-button ${!selectedAlgorithm ? "disabled" : ""}`'
+								onClick={startSorting}
+								disabled={!selectedAlgorithm}
+								style={{ alignSelf: "center" }}
+							>
+								<span className="large-button-text">Start Sorting</span>
+							</button>
+							<div className="animation-speed-slider-container d-flex align-items-center my-3">
+								<span className="slider-label">Animation Speed</span>
+								<input
+									type="range"
+									className="form-range"
+									min="1"
+									max="150"
+									value={150 + 1 - animationSpeed}
+									id="animation-speed-slider"
+									onChange={onChangeSlider}
+								/>
+							</div>
+						</div>
+					</div>
+
+					<div className='algo-compass-container'>
+						{selectedAlgorithm && (
+							<AlgoCompass
+								algorithm={selectedAlgorithm}
+							/>
+						)}
 					</div>
 				</div>
-
 			</div>
 		</div>
 	);

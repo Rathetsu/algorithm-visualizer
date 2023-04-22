@@ -5,24 +5,9 @@
 	bottom: 0;
 	width: 200px;
 	height: 100%;
-	background-color: #f8f9fa;
+	background: radial-gradient(circle at center, #3C5065, #253341);
 	transition: all 0.3s;
 	padding-top: 20px;
-}
-
-.sidebar.collapsed {
-	width: 50px;
-}
-
-.sidebar .toggle-btn {
-	position: absolute;
-	right: -50px;
-	top: 20px;
-	width: 50px;
-	height: 50px;
-	background-color: #f8f9fa;
-	border: none;
-	font-size: 24px;
 }
 
 .sidebar .algorithms {
@@ -39,8 +24,9 @@
 	background-color: transparent;
 	cursor: pointer;
 	text-align: left;
+	color: #fff;
 }
 
 .sidebar .algorithms button:hover {
-	background-color: #e9ecef;
+	background-color: #4E5D6C;
 }

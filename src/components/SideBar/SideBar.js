@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
 import './SideBar.css';
 
 const SideBar = ({ algorithms, onSelectAlgorithm, onGenerateNewArray }) => {
-	const [isCollapsed, setIsCollapsed] = useState(false);
 
 	return (
-		<div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-			<button className="toggle-btn" onClick={() => setIsCollapsed(!isCollapsed)}>
-				{isCollapsed ? '>' : '<'}
-			</button>
+		<div className={'sidebar'}>
 			<button className="generate-button" onClick={onGenerateNewArray}>
 				Generate New Array
 			</button>

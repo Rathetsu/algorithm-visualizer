@@ -1,8 +1,17 @@
-.navBar {
+.navbar {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	background: linear-gradient(180deg, #2C3E50, #1C2833);
 	padding: 0 20px;
 	height: 60px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .nav-link {
+    color: #fff;
+}
+
+.navbar .nav-link:hover {
+    color: #ccc;
 }
