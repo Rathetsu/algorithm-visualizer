@@ -53,7 +53,7 @@ const AlgoCompass = ({ algorithm }) => {
 		<div className="algo-compass">
 			<div className="container">
 				<div className="row gy-4">
-					<div className="col-lg-6">
+					<div className="col-lg-12">
 						<div className="card algo-card">
 							<div className="card-body">
 								<h2 className="card-title">{algorithm.name}</h2>
@@ -61,7 +61,7 @@ const AlgoCompass = ({ algorithm }) => {
 							</div>
 						</div>
 					</div>
-					<div className="col-lg-6">
+					<div className="col-lg-12">
 						<div className="card algo-card">
 							<div className="card-body">
 								<h3 className="card-title">In-depth Explanation</h3>
