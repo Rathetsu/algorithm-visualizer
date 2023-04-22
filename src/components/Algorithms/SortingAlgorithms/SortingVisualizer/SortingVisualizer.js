@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import useD3 from '../../../../hooks/useD3';
 import './SortingVisualizer.css';
@@ -9,7 +9,8 @@ import { sortingAlgorithms } from '../../../../utils/AlgorithmsData';
 const SortingVisualizer = () => {
 	const [array, setArray] = useState([]);
 	const [selectedAlgorithm, setSelectedAlgorithm] = useState(sortingAlgorithms[0]);
-	const [animationSpeed, setAnimationSpeed] = useState(50);
+	const animationSpeed = useRef(50);
+	const [sliderValue, setSliderValue] = useState(150 - animationSpeed.current + 1);
 
 	const generateRandomArray = () => {
 		let max = 1000
@@ -20,10 +21,10 @@ const SortingVisualizer = () => {
 
 
 	const startSorting = () => {
-		animateSorting(selectedAlgorithm.function(array), ref, animationSpeed);
+		animateSorting(selectedAlgorithm.function(array), ref);
 	};
 
-	const animateSorting = (steps, ref, animationSpeed = 5) => {
+	const animateSorting = (steps, ref) => {
 		console.log('steps: ', steps);
 		if (steps.length === 0) return;
 
@@ -37,14 +38,15 @@ const SortingVisualizer = () => {
 		y.domain([0, d3.max(array)]);
 
 		let i = 0;
-		const interval = setInterval(() => {
+
+		const stepExecution = () => {
 			const step = steps[i];
 
 			if (step.type === 'compare') {
 				bars
 					.filter((_, idx) => idx === step.first || idx === step.second)
 					.transition()
-					.duration(animationSpeed)
+					.duration(animationSpeed.current)
 					.style('fill', 'red');
 			} else if (step.type === 'swap') {
 				// Swap the array values
@@ -54,7 +56,7 @@ const SortingVisualizer = () => {
 				bars
 					.data(array)
 					.transition()
-					.duration(animationSpeed)
+					.duration(animationSpeed.current)
 					.attr('y', (d) => y(d))
 					.attr('height', (d) => height - y(d))
 					.style('fill', 'steelblue')
@@ -71,7 +73,7 @@ const SortingVisualizer = () => {
 				bars
 					.data(array)
 					.transition()
-					.duration(animationSpeed)
+					.duration(animationSpeed.current)
 					.attr('y', (d) => y(d))
 					.attr('height', (d) => height - y(d))
 					.style('fill', (_, idx) => (idx === step.index ? 'green' : 'steelblue'));
@@ -79,24 +81,21 @@ const SortingVisualizer = () => {
 
 			i++;
 
-			if (i >= steps.length) {
-				clearInterval(interval);
-
-				// Reset bar colors after sorting is finished
-				bars
-					.transition()
-					.duration(animationSpeed)
-					.delay((_, idx) => idx * 10)
-					.style('fill', 'steelblue');
+			if (i < steps.length) {
+				setTimeout(stepExecution, animationSpeed.current * 2);
 			}
-		}, animationSpeed * 2);
+
+		};
+
+		setTimeout(stepExecution, animationSpeed.current * 2)
 	};
 
 	const onChangeSlider = (event) => {
 		const max = 150;
 		let speed = max - event.target.value + 1;
 		console.log('speed: ', speed);
-		setAnimationSpeed(speed);
+		animationSpeed.current = speed;
+		setSliderValue(event.target.value);
 	}
 
 	useEffect(() => {
@@ -176,7 +175,7 @@ const SortingVisualizer = () => {
 									className="form-range"
 									min="1"
 									max="150"
-									value={150 + 1 - animationSpeed}
+									value={sliderValue}
 									id="animation-speed-slider"
 									onChange={onChangeSlider}
 								/>
