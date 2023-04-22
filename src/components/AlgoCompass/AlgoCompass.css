@@ -1,25 +1,34 @@
-.code-tabs {
-	display: flex;
-	margin-bottom: 1rem;
+.algo-card {
+    background: linear-gradient(135deg, #2C3E50, #4E5D6C);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(110, 110, 110, 0.1), 0 1px 3px rgba(110, 110, 110, 0.08);
+    transition: all 0.3s ease;
 }
 
-.code-tab {
-	background-color: #f1f1f1;
-	border: none;
-	cursor: pointer;
-	padding: 0.5rem 1rem;
-	margin-right: 0.5rem;
+.algo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.12);
 }
 
-.code-tab.active {
-	background-color: #ccc;
+.algo-card .card-body {
+    color: #fff;
 }
 
-.code-content pre {
-	background-color: #f6f8fa;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	padding: 1rem;
-	white-space: pre-wrap;
-	word-wrap: break-word;
+.algo-card .card-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.code-tabs .nav-link {
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.code-tabs .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+	color: #fff;
+}
+
+.code-tabs .nav-link.active {
+    font-weight: bold;
 }
