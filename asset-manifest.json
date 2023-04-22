@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/algorithm-visualizer/static/css/main.54bfadb3.css",
-    "main.js": "/algorithm-visualizer/static/js/main.20a3ada8.js",
+    "main.css": "/algorithm-visualizer/static/css/main.ea04d2e3.css",
+    "main.js": "/algorithm-visualizer/static/js/main.0d5f5fd6.js",
     "static/js/787.62a203ce.chunk.js": "/algorithm-visualizer/static/js/787.62a203ce.chunk.js",
     "static/media/hero-background-image.jpg": "/algorithm-visualizer/static/media/hero-background-image.8ba273c29d1032b3b8bf.jpg",
     "static/media/sorting-algorithms-image.png": "/algorithm-visualizer/static/media/sorting-algorithms-image.5be5a97a8e5096428852.png",
     "static/media/pathfinding-algorithms-image.jpg": "/algorithm-visualizer/static/media/pathfinding-algorithms-image.0001731bf501aef8fb0b.jpg",
     "index.html": "/algorithm-visualizer/index.html",
-    "main.54bfadb3.css.map": "/algorithm-visualizer/static/css/main.54bfadb3.css.map",
-    "main.20a3ada8.js.map": "/algorithm-visualizer/static/js/main.20a3ada8.js.map",
+    "main.ea04d2e3.css.map": "/algorithm-visualizer/static/css/main.ea04d2e3.css.map",
+    "main.0d5f5fd6.js.map": "/algorithm-visualizer/static/js/main.0d5f5fd6.js.map",
     "787.62a203ce.chunk.js.map": "/algorithm-visualizer/static/js/787.62a203ce.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.54bfadb3.css",
-    "static/js/main.20a3ada8.js"
+    "static/css/main.ea04d2e3.css",
+    "static/js/main.0d5f5fd6.js"
   ]
 }
