@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import CodeBlock from "../CodeBlock/CodeBlock";
 import "./AlgoCompass.css";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
+import remarkMath from 'remark-math';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const AlgoCompass = ({ algorithm }) => {
 	const [selectedTab, setSelectedTab] = useState(
@@ -44,7 +51,7 @@ const AlgoCompass = ({ algorithm }) => {
 		return (
 			<CodeBlock
 				code={implementation.code}
-				language={implementation.language}
+				language={implementation.language.toLowerCase()}
 			/>
 		);
 	};
@@ -64,8 +71,34 @@ const AlgoCompass = ({ algorithm }) => {
 					<div className="col-lg-12">
 						<div className="card algo-card">
 							<div className="card-body">
-								<h3 className="card-title">In-depth Explanation</h3>
-								<p className="card-text">{algorithm.inDepthExplanation}</p>
+								<p className="card-text">
+									<ReactMarkdown
+										remarkPlugins={[remarkGfm, remarkMath]}
+										rehypePlugins={[rehypeKatex]}
+										children={algorithm.inDepthExplanation}
+										components={{
+											code({ node, inline, className, children, ...props }) {
+												const match = /language-(\w+)/.exec(className || '');
+												return !inline && match ? (
+													<SyntaxHighlighter
+														children={String(children).replace(/\n$/, '')}
+														style={a11yDark}
+														PreTag='section'
+														language={match[1]}
+														{...props}
+													/>
+												) : (
+													<code
+														className={`inline-code ${className}`}
+														{...props}
+													>
+														{children}
+													</code>
+												);
+											}
+										}}
+									/>
+								</p>
 							</div>
 						</div>
 					</div>

@@ -9,10 +9,15 @@
 		"bootstrap": "^5.2.3",
 		"d3": "^7.8.4",
 		"react": "^18.2.0",
+		"react-app-rewired": "^2.2.1",
 		"react-dom": "^18.2.0",
+		"react-markdown": "^8.0.7",
 		"react-router-dom": "^6.10.0",
 		"react-scripts": "5.0.1",
 		"react-syntax-highlighter": "^15.5.0",
+		"rehype-katex": "^6.0.3",
+		"remark-gfm": "^3.0.1",
+		"remark-math": "^5.1.1",
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
@@ -42,7 +47,8 @@
 		]
 	},
 	"devDependencies": {
-		"gh-pages": "^5.0.0"
+		"gh-pages": "^5.0.0",
+		"raw-loader": "^4.0.2"
 	},
 	"homepage": "https://rathetsu.github.io/algorithm-visualizer/"
 }

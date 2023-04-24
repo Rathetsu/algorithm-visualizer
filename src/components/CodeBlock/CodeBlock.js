@@ -6,7 +6,7 @@ import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 const CodeBlock = ({ code, language }) => {
 	return (
 		<SyntaxHighlighter
-			language='javascript'
+			language={language}
 			style={a11yDark}
 			showLineNumbers={true}
 		>

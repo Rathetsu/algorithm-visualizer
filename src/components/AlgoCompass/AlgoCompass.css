@@ -1,34 +1,41 @@
 .algo-card {
-    background: linear-gradient(135deg, #2C3E50, #4E5D6C);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(110, 110, 110, 0.1), 0 1px 3px rgba(110, 110, 110, 0.08);
-    transition: all 0.3s ease;
+	background: linear-gradient(135deg, #2C3E50, #4E5D6C);
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(110, 110, 110, 0.1), 0 1px 3px rgba(110, 110, 110, 0.08);
+	transition: all 0.3s ease;
 }
 
 .algo-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.12);
+	transform: translateY(-5px);
+	box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.12);
 }
 
 .algo-card .card-body {
-    color: #fff;
+	color: #fff;
 }
 
 .algo-card .card-title {
-    font-weight: bold;
-    margin-bottom: 15px;
+	font-weight: bold;
+	margin-bottom: 15px;
 }
 
 .code-tabs .nav-link {
-    color: #fff;
-    transition: background-color 0.3s ease;
+	color: #fff;
+	transition: background-color 0.3s ease;
 }
 
 .code-tabs .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.2);
 	color: #fff;
 }
 
 .code-tabs .nav-link.active {
-    font-weight: bold;
+	font-weight: bold;
+}
+
+.inline-code {
+	color: white;
+	background-color: rgba(0, 0, 0, 0.1);
+	padding: 2px 4px;
+	border-radius: 4px;
 }
